@@ -14,7 +14,7 @@ const async = require('async');
 const User = require("./models/user");
 const Message = require("./models/message");
 const mongoose = require('mongoose');
-
+const bcrypt = require("bcryptjs");
 const mongoDB = userArgs[0];
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
@@ -25,25 +25,30 @@ let users = []
 let messages = []
 
 function userCreate(firstName, lastName, userName, password, membership, cb){
-    userdetail = {
-        firstName: firstName,
-        lastName: lastName,
-        userName: userName,
-        password: password,
-        membership: membership,
-    };
-
-    const user = new User(userdetail);
-
-    user.save(function(err){
+    bcrypt.hash(password, 10, (err, hashedpassword) => {
         if(err){
-            cb(err, null);
-            return;
+            return err
         }
-        console.log("New User: " + user);
-        users.push(user);
-        cb(null, user);
-    });
+        userdetail = {
+            firstName: firstName,
+            lastName: lastName,
+            userName: userName,
+            password: hashedpassword,
+            membership: membership,
+        };
+    
+        const user = new User(userdetail);
+    
+        user.save(function(err){
+            if(err){
+                cb(err, null);
+                return;
+            }
+            console.log("New User: " + user);
+            users.push(user);
+            cb(null, user);
+        });
+    })
 }
 
 function messageCreate(messageText, postAuthor, datePosted, cb){
