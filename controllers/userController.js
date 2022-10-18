@@ -1,7 +1,15 @@
+const Message = require("../models/message");
+const User = require("../models/user");
 
 exports.index = (req, res, next) => {
-    res.render("index", {
-        title: "The Club",
+    const messageList = Message.find()
+    .populate("postAuthor", "userName")
+    .exec(function(err, list_messages){
+        if(err){return next(err);}
+        res.render("index", {
+            title: "The Club",
+            messages: list_messages,
+        })
     })
 }
 

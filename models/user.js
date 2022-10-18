@@ -13,7 +13,13 @@ const UserSchema = new Schema({
 UserSchema
 .virtual('url')
 .get(function(){
-    return "/user" + this._id;
+    return `/user/${this._id}`;
 });
+
+UserSchema
+  .virtual('username')
+  .get(function(){
+    return this.userName
+  })
 
 module.exports = mongoose.model("User", UserSchema);
