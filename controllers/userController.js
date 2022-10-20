@@ -1,5 +1,6 @@
 const Message = require("../models/message");
 const User = require("../models/user");
+const passport = require("passport");
 
 exports.index = (req, res, next) => {
     const messageList = Message.find()
@@ -9,6 +10,7 @@ exports.index = (req, res, next) => {
         res.render("index", {
             title: "The Club",
             messages: list_messages,
+            user: req.user,
         })
     })
 }
@@ -26,8 +28,7 @@ exports.user_login_get = (req, res, next) => {
     })
 }
 
-exports.user_login_post = (req, res, next) => {
-    res.render("user_login", {
-        title: "Logged In",
-    })
-}
+exports.user_login_post = passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/user_login"
+});

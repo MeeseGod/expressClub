@@ -10,7 +10,11 @@
     <% for(let i = 0; i < messages.length; i++){ %>
       <div>
         <p><%= messages[i].messageText %></p>
-        <p><%= messages[i].postAuthor[0].username%></p>
+        <% if(user){ %>
+          <p><%= messages[i].postAuthor[0].username%></p>
+        <% } else {%>
+          <p>Anonymous</p>
+        <% } %>
       </div>
     <% } %>
   </body>

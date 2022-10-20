@@ -12,6 +12,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const User = require("./models/user");
 
 var app = express();
 
@@ -26,14 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -71,6 +64,19 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function(err, req, res, next) {
