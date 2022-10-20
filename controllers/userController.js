@@ -18,3 +18,16 @@ exports.user_signup = (req, res, next) => {
         title: "Sign Up",
     })
 }
+
+exports.user_login_get = (req, res, next) => {
+    res.render("user_login", {
+        title: "Login",
+        user: req.user,
+    })
+}
+
+exports.user_login_post = (req, res, next) => {
+    res.render("user_login", {
+        title: "Logged In",
+    })
+}
