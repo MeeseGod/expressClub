@@ -5,8 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <a href="/sign-up">Sign Up</a>
-    <a href="/log-in">Login</a>
+    <% if(!user){ %>
+      <a href="/sign-up">Sign Up</a>
+      <a href="/log-in">Login</a>
+    <% } else {%>
+      <a href="/log-out">Logout</a>
+    <% } %>
     <% for(let i = 0; i < messages.length; i++){ %>
       <div>
         <p><%= messages[i].messageText %></p>

@@ -28,6 +28,15 @@ exports.user_login_get = (req, res, next) => {
     })
 }
 
+exports.user_logout = (req, res, next) => {
+    req.logout(function(err){
+        if(err){
+            return next(err)
+        }
+    res.redirect("/");
+    })
+}
+
 exports.user_login_post = passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/user_login"
