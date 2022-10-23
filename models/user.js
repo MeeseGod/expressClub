@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     userName : {type: String, required: true},
     password: {type: String, required: true},
     membership: {type: String, required: true},
+    isVerified: {type: Boolean, required: true},
 });
 
 UserSchema

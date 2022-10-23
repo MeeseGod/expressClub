@@ -26,7 +26,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var messages = []
 var users = []
 
-function userCreate(firstName, lastName, userName, password, membership, cb) {
+function userCreate(firstName, lastName, userName, password, membership, isVerified, cb) {
     bcrypt.hash(password, 10, (err, hashedpassword) => {
     var user = new User({ 
         firstName: firstName,
@@ -34,6 +34,7 @@ function userCreate(firstName, lastName, userName, password, membership, cb) {
         userName: userName,
         password: hashedpassword,
         membership: membership,
+        isVerified: isVerified,
     });
        
     user.save(function (err) {
@@ -71,13 +72,13 @@ function messageCreate(messageText, postAuthor, datePosted, cb) {
 function createUsers(cb) {
   async.series([
     function(callback) {
-        userCreate("John", "Smith", "JohnnyS", "password2", "user", callback)
+        userCreate("John", "Smith", "JohnnyS", "password2", "user", true, callback)
     },
     function(callback) {
-        userCreate("Jane", "Doe", "Jane28", "password2", "user", callback)
+        userCreate("Jane", "Doe", "Jane28", "password2", "user", true, callback)
     },
     function(callback) {
-        userCreate("Adam", "Smasher", "Arasaka", "password2", "admin", callback)
+        userCreate("Adam", "Smasher", "Smasher", "password2", "admin", true, callback)
     },
   ],
   cb)
