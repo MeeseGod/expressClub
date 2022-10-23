@@ -10,6 +10,10 @@
       <a href="/log-in">Login</a>
     <% } else {%>
       <a href="/log-out">Logout</a>
+      <form>
+        <input type="text" name="postContent" placeholder="Post content...">
+        <button>Submit Post</button>
+      </form>
     <% } %>
     <% for(let i = 0; i < messages.length; i++){ %>
       <div>

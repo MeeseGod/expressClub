@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const userController = require("../controllers/userController");
+const indexController = require("../controllers/indexController");
 const User = require ("../models/user");
 
 // Get Index
-router.get("/", userController.index);
+router.get("/", indexController.index);
 
 // Get Signup Form
 router.get("/sign-up", userController.user_signup_get);

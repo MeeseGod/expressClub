@@ -1,21 +1,7 @@
-const Message = require("../models/message");
 const User = require("../models/user");
 const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-
-exports.index = (req, res, next) => {
-    const messageList = Message.find()
-    .populate("postAuthor", "userName")
-    .exec(function(err, list_messages){
-        if(err){return next(err);}
-        res.render("index", {
-            title: "The Club",
-            messages: list_messages,
-            user: req.user,
-        })
-    })
-}
 
 exports.user_signup_get = (req, res, next) => {
     res.render("user_signup", {
