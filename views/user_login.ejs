@@ -7,7 +7,6 @@
   <body>
     <h1><%= title %></h1>
     <a href="/">Home</a>
-    <% if(!user) {%>
     <form action="/log-in" method="POST">
         <label for="username">Username</label>
         <input name="username" placeholder="username" type="text" />
@@ -15,8 +14,5 @@
         <input name="password" type="password" />
         <button>Log In</button>
       </form>
-    <%} else {%>
-    <h1>Signed In</h1>
-    <% }%>
   </body>
 </html>

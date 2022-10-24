@@ -9,6 +9,10 @@
       <a href="/sign-up">Sign Up</a>
       <a href="/log-in">Login</a>
     <% } else {%>
+      <% if(user.isVerified === false) {%>
+        <p>Unverified User</p>
+      <% } %>
+      <p><%= user.userName %></p>
       <a href="/log-out">Logout</a>
       <form>
         <input type="text" name="postContent" placeholder="Post content...">
