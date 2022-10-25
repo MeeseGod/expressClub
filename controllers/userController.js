@@ -78,3 +78,21 @@ exports.user_logout = (req, res, next) => {
     res.redirect("/");
     })
 }
+
+exports.user_verify = [
+  body("verificationPhrase", "Invalid verification phrase")
+  .trim()
+  .escape()
+  .custom(async (value, { req }) => {
+    // Use the custom method w/ a CB func to ensure that both passwords match, return an error if so
+    if (value != process.env.VERIFICATIONPHRASE) throw new Error('Passwords must be the same');
+  }),
+  async (req, res, next) => {
+      User.findOneAndUpdate({userName: req.user.userName}, {isVerified: true}, {}, (theuser, err) =>{
+        if(err){
+          return next(err);
+        }
+      })
+      res.redirect("/")
+  }
+]

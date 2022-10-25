@@ -22,4 +22,6 @@ router.post("/sign-up", userController.user_signup_post);
 // Logout
 router.get("/log-out", userController.user_logout);
 
+router.post("/verify-phrase", userController.user_verify);
+
 module.exports = router;

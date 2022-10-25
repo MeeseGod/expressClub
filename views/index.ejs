@@ -9,20 +9,24 @@
       <a href="/sign-up">Sign Up</a>
       <a href="/log-in">Login</a>
     <% } else {%>
-      <% if(user.isVerified === false) {%>
-        <p>Unverified User</p>
-      <% } %>
       <p><%= user.userName %></p>
       <a href="/log-out">Logout</a>
+      <% if(user && user.isVerified === false) {%>
+        <form action="/verify-phrase" method="post">
+          <input type="text" name="verificationPhrase" placeholder="Verification Phrase">
+          <button>Submit Post</button>
+        </form>
+      <% } else { %>
       <form>
         <input type="text" name="postContent" placeholder="Post content...">
         <button>Submit Post</button>
       </form>
+      <% } %>
     <% } %>
     <% for(let i = 0; i < messages.length; i++){ %>
       <div>
         <p><%= messages[i].messageText %></p>
-        <% if(user){ %>
+        <% if(user && user.isVerified === true){ %>
           <p><%= messages[i].postAuthor[0].username%></p>
         <% } else {%>
           <p>Anonymous</p>
