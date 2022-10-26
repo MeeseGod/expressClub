@@ -17,8 +17,8 @@
           <button>Submit Post</button>
         </form>
       <% } else { %>
-      <form>
-        <input type="text" name="postContent" placeholder="Post content...">
+      <form action="/create-post" method="post">
+        <input type="text" name="postContent" placeholder="Post Message" maxlength="1200">
         <button>Submit Post</button>
       </form>
       <% } %>

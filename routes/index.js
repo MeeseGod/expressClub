@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const userController = require("../controllers/userController");
 const indexController = require("../controllers/indexController");
+const messageController = require("../controllers/messageController");
 const User = require ("../models/user");
 
 // Get Index
@@ -23,5 +24,7 @@ router.post("/sign-up", userController.user_signup_post);
 router.get("/log-out", userController.user_logout);
 
 router.post("/verify-phrase", userController.user_verify);
+
+router.post("/create-post", messageController.message_create_post);
 
 module.exports = router;
