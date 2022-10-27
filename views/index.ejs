@@ -14,25 +14,30 @@
         <a href="/log-out">Logout</a>
       <% } %>
     </div>
-    <div class="postContainer">
-      <% if(user && user.isVerified === false) {%>
+    <% if(user && user.isVerified === false) {%>
+      <div class="postContainer">
         <form action="/verify-phrase" method="post">
           <input type="text" name="verificationPhrase" placeholder="Verification Phrase">
+          <button>Submit Verification</button>
+        </form>
+      </div>
+    <% } %>
+    <% if(user && user.isVerified){%>
+      <div class="postContainer">
+        <form action="/create-post" method="post">
+          <input type="text" name="postContent" placeholder="Post Message" maxlength="1200">
           <button>Submit Post</button>
         </form>
-      <% } else { %>
-      <form action="/create-post" method="post">
-        <input type="text" name="postContent" placeholder="Post Message" maxlength="1200">
-        <button>Submit Post</button>
-      </form>
-      <% } %>
-    </div>
+      </div>
+    <% } %>
     <div class="messagesContainer">
     <% for(let i = 0; i < messages.length; i++){ %>
+      <% console.log(messages[i]._id) %>
       <div>
         <p><%= messages[i].messageText %></p>
-        <% if(user && user.isVerified === true){ %>
+        <% if(user && user.isVerified === true || user && user.isAdmin === true){ %>
           <p><%= messages[i].postAuthor[0].username%></p>
+          <a href="/test">Delete</a>
         <% } else {%>
           <p>Anonymous</p>
         <% } %>

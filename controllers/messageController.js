@@ -4,6 +4,10 @@ const User = require("../models/user");
 
 const async = require('async');
 
+exports.message_delete_get = (req, res, next) => {
+
+}
+
 exports.message_delete_post = [
     
 ]

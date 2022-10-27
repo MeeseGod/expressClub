@@ -49,8 +49,8 @@ exports.user_signup_post = [
               lastName: req.body.lastName,
               userName: req.body.userName,
               password: hashedPassword,
-              membership: "user",
               isVerified: false,
+              isAdmin: false,
             }).save(err => err ? next(err) : res.redirect("/"));
           });
         } catch (err) {
@@ -67,7 +67,7 @@ exports.user_login_get = (req, res, next) => {
 
 exports.user_login_post = passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/user_login"
+  failureRedirect: "/"
 });
 
 exports.user_logout = (req, res, next) => {

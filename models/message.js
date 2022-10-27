@@ -15,4 +15,10 @@ MessageSchema
   return this.datePosted ? DateTime.fromJSDate(this.datePosted).toLocaleString(DateTime.DATE_MED) : '';
 });
 
+MessageSchema
+virtual("deleteUrl")
+.get(function() {
+  return `/delete/${this._id}`
+})
+
 module.exports = mongoose.model("Message", MessageSchema);
