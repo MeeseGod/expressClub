@@ -16,7 +16,7 @@ MessageSchema
 });
 
 MessageSchema
-virtual("deleteUrl")
+.virtual("deleteUrl")
 .get(function() {
   return `/delete/${this._id}`
 })
