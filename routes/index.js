@@ -28,6 +28,9 @@ router.post("/verify-phrase", userController.user_verify);
 router.post("/create-post", messageController.message_create_post);
 
 // Delete Message
+router.get("/delete/:id", messageController.message_delete_get);
+
+// Delete Message
 router.post("/delete/:id", messageController.message_delete_post);
 
 module.exports = router;

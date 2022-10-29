@@ -5,11 +5,30 @@ const User = require("../models/user");
 const async = require('async');
 
 exports.message_delete_get = (req, res, next) => {
-
+    async.parallel({
+        message(callback){
+            Message.findById(req.params.id)
+            .exec(callback);
+        }
+    },
+    (err, results) => {
+        if (err) {
+            return next(err);
+          }
+          if (results.message == null) {
+            // No results.
+            res.redirect("/");
+          }
+          // Successful, so render.
+          res.render("message_delete", {
+            title: "Delete Message",
+            message: results.message,
+          });
+    });
 }
 
 exports.message_delete_post = [
-    
+
 ]
 
 exports.message_create_post = [
