@@ -8,6 +8,7 @@ exports.message_delete_get = (req, res, next) => {
     async.parallel({
         message(callback){
             Message.findById(req.params.id)
+            .populate("postAuthor")
             .exec(callback);
         }
     },

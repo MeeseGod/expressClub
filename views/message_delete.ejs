@@ -6,7 +6,16 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <a href="/">Home</a>
-    
+    <hr/>
+    <div>
+      <h2>Do you wish to delete this message?</h2>
+      <p><%= message.messageText %></p>
+      <p><%= message.postAuthor[0].userName %></p>
+      <p>Date Posted: <%= message.date %></p>
+    </div>
+    <form method="post" action="">
+      <input type="hidden" id="<%= message._id %>" name="messageid" value="<%= message._id %>">
+      <button type="submit">Delete</button>
+    </form>
   </body>
 </html>
