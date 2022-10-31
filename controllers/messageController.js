@@ -28,9 +28,27 @@ exports.message_delete_get = (req, res, next) => {
     });
 }
 
-exports.message_delete_post = [
-
-]
+exports.message_delete_post = (req, res, next) => {
+    async.parallel(
+        {
+          message(callback) {
+            Message.findById(req.body.messageid).exec(callback);
+          },
+        },
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          Message.findByIdAndRemove(req.body.messageid, (err) => {
+            if (err) {
+              return next(err);
+            }
+            // Success - go to author list
+            res.redirect("/");
+          });
+        }
+      );
+}
 
 exports.message_create_post = [
     body("postContent")
