@@ -20,10 +20,15 @@ exports.message_delete_get = (req, res, next) => {
             // No results.
             res.redirect("/");
           }
+          if(results.message.postAuthor[0].userName !== req.user.userName && req.user.isAdmin === false) {
+            // Message is not written by user
+            res.redirect("/");
+          }
           // Successful, so render.
           res.render("message_delete", {
             title: "Delete Message",
             message: results.message,
+            user: req.user,
           });
     });
 }
