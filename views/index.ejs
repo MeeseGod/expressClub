@@ -37,6 +37,7 @@
           <p><%= messages[i].messageText %></p>
           <% if(user && user.isVerified){ %>
               <p><%= messages[i].postAuthor[0].userName %></p>
+              <p><%= messages[i].date %></p>
           <% } else {%>
               <p>Anonymous</p>
           <% } %>
