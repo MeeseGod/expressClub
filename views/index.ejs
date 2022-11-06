@@ -5,6 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class="titleContainer">
+      <h1>the_underground.</h1>
+    </div>
     <div class="navbar">
       <% if(!user){ %>
         <a href="/sign-up">Sign Up</a>
@@ -25,30 +28,32 @@
     <% if(user && user.isVerified){%>
       <div class="postContainer">
         <form action="/create-post" method="post">
-          <input type="text" name="postContent" placeholder="Post Message" maxlength="1200">
+          <input type="text" name="postContent" placeholder="Message..." maxlength="1200">
           <button>Submit Post</button>
         </form>
       </div>
     <% } %>
 
+    <hr>
+
     <div class="messagesContainer">
       <% for(let i = 0; i < messages.length; i++){ %>
-        <div>
-          <p><%= messages[i].messageText %></p>
-          <% if(user && user.isVerified){ %>
-              <p><%= messages[i].postAuthor[0].userName %></p>
-              <p><%= messages[i].date %></p>
-          <% } else {%>
-              <p>Anonymous</p>
-          <% } %>
-          <% if(user && user.userName === messages[i].postAuthor[0].userName || user && user.isAdmin){ %>
-              <a href= "<%= messages[i].deleteUrl %>">Delete</a>
-          <% } %>
+        <div class="messageContainer">
+          <div class="messageContent">
+            <p><%= messages[i].messageText %></p>
+            <% if(user && user.isVerified){ %>
+                <p><%= messages[i].postAuthor[0].userName %></p>
+                <p>Date Posted: <%= messages[i].date %></p>
+            <% } else {%>
+                <p>Anonymous</p>
+            <% } %>
+            <% if(user && user.userName === messages[i].postAuthor[0].userName || user && user.isAdmin){ %>
+                <a href= "<%= messages[i].deleteUrl %>">Delete</a>
+            <% } %>
+          </div>
         </div>
+        <hr>
       <% } %>
   </div>
-
-
-
   </body>
 </html>

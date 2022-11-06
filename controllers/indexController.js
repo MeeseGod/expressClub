@@ -6,7 +6,7 @@ exports.index = (req, res, next) => {
     .exec(function(err, list_messages){
         if(err){return next(err);}
         res.render("index", {
-            title: "The Club",
+            title: "The Underground",
             messages: list_messages,
             user: req.user,
         })
