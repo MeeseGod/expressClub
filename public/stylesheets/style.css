@@ -8,6 +8,13 @@ body {
   background-color: rgb(0, 0, 0);
 }
 
+button {
+  background-color: rgb(0, 0, 0);
+  border-style: solid;
+  border-color: #28a338;
+  color: #28a338;
+}
+
 h1, h2{
   color: #28a338;
 }
