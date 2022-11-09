@@ -15,6 +15,11 @@ button {
   color: #28a338;
 }
 
+button:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
 h1, h2{
   color: #28a338;
 }
@@ -35,6 +40,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px rgb(0, 0, 0) inset !important;
+    -webkit-text-fill-color: #28a338;
     color: #28a338;
 }
 
