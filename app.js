@@ -16,7 +16,7 @@ const User = require("./models/user");
 
 var app = express();
 
-mongoose.connect("mongodb+srv://expressClub:privateclubpw9@cluster0.wzbvfch.mongodb.net/?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect("process.env.MONGO", { useUnifiedTopology: true, useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
