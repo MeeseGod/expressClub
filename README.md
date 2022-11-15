@@ -1,8 +1,7 @@
-## Express Club
-This application was created for the Odin Project as part of it's express curriculum.
-The point of the application is to create a message board that allows user registration and displays posts accordingly.
-Users who are logged in are able to see the user information, such as usernames, of other users who post.
-Anonymous viewers however will only see anonymous information, keeping user information private.
+##  The Underground
+This application is a live chat application with user registration, administration capabilities and anonymity protection for users from non-verified users. 
+
+The application utilizes express as it's backend and EJS for it's view. 
 
 Live App: https://the-underground.onrender.com/
 
