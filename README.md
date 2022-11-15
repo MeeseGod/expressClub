@@ -1,5 +1,5 @@
 ##  The Underground
-This application is a live chat application with user registration, administration capabilities and anonymity protection for users from non-verified users. 
+This application is a live chat application with user registration, administration capabilities and anonymity protection for users from non-verified users. Anyone can register though only people with a secret verification phrase can post and see the names of other posters.
 
 The application utilizes express as it's backend and EJS for it's view. 
 
